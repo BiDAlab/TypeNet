@@ -56,50 +56,50 @@ where *G* is the number of sequences in the gallery (i.e. the number of enrollme
 To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define *k* as the number of enrolled subjects. In our experiments, we vary *k* in the range 100 ≤ *k* ≤ *K*, where *K* = 100,000 for the desktop TypeNet models and *K* = 30,000 for the mobile ones. Therefore each subject has 5 genuine scores and *k*-1 impostor scores.
 
 #### FILES FORMAT
-+ .txt files: it just contains two columns with the **{x̂, ŷ}** mouse coordinates.
-  + COLUMN 1: represents the **x̂** coordinate.
++ .npy files: the matrix that contains the embedding vectors of dimensions (Subject, Session, Embedding vector).
 
-  + COLUMN 2: represents the **ŷ** coordinate.
+  + Subject index: from 0 to 100000 for desktop and from 0 to 30000 for mobile.
 
-+ .ana files: each row contains a log-normal signal extracted from the synthetic mouse trayectory, this log-normal signal is definded by 6 parameters. One parameter in each column:  
-
-  + COLUMN 1: represents the *D* parameter.
-
-  + COLUMN 2: represents the *t<sub>0</sub>* parameter.
-
-  + COLUMN 3: represents the *μ* parameter.
-
-  + COLUMN 4: represents the *σ* parameter.
-
-  + COLUMNS 5 : represents the *θ<sub>s</sub>* parameter.
+  + Session index : from 0 to 15.
   
-  + COLUMNS 6 : represents the *θ<sub>e</sub>* parameter.
-  
-  + COLUMNS 7, 8: are zeros.
+  + Embedding vector: a vector of size 1 X 128.
   
 
 #### FILES NOMENCLATURE
-The nomenclature followed to name the files of the function-based method is: NNNN_y=A_vp=B_task=C.txt
+The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SCENARIO.npy*
 
-+ NNNN: indicates the number of the sample.
++ LOSS: indicates the loss function employed to train the TypeNet model to calculate the embedding vectors.
 
-+ A: indicates the shape of the trajectory:
+  + Softmax = softmax loss funtion.
+  
+  + Contrastive = Contrastive loss function.
+  
+  + Triplet = triplet loss function.
+  
 
-  + 0 = linear.
-  
-  + 1 = quadratic.
-  
-  + 2 = exponential.
-  
-+ B: indicates the velocity profile:
++ SCENARIO: indicates whether the embedding vectors are extracted from the desktop or mobile datasets.
 
-  + 0 = constant velocity.
+  + Mobile = mobile dataset.
   
-  + 1 = logarithmic velocity.
+  + Desktop = desktop dataset.
   
-  + 2 = Gaussian velocity.
   
-+ C: indicates the task (1-8) of the human mouse database in which the trayectory was synthetized. This is necessary because the function-based method needs the initial [*x̂<sub>1</sub>, ŷ<sub>1</sub>*] and the end [*x̂<sub>M</sub>, ŷ<sub>M</sub>*] points of the human trayectory to synthetyse.
+#### EXAMPLE USAGE
+
+```python
+
+from keras_vggface.vggface import VGGFace
+
+# Based on VGG16 architecture -> old paper(2015)
+vggface = VGGFace(model='vgg16') # or VGGFace() as default
+
+# Based on RESNET50 architecture -> new paper(2017)
+vggface = VGGFace(model='resnet50')
+
+# Based on SENET50 architecture -> new paper(2017)
+vggface = VGGFace(model='senet50')
+
+```
 
 
 #### REFERENCES
