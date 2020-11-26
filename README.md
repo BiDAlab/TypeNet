@@ -30,8 +30,8 @@ The embedding vectors are obtained when passing through TypeNet network the keys
 **TypeNet Architecture**  
 The TypeNet architecture is depicted in Fig. 1. It is composed of two Long Short-Term Memory (LSTM) layers of 128 units (*tanh* activation function). Between the LSTM layers, we perform batch normalization and dropout at a rate of 0.5 to avoid overfitting. Additionally, each LSTM layer has a recurrent dropout rate of 0.2. 
 
-In order to train TypeNet with sequences of different lengths *N* within a single batch, we truncate the end of the input sequence when *N>M* and zero pad at the end when *N<M*, in both cases to the fixed size *M*. The embedding vector provided are obtained for keystroke sequence of size *M=50* keys.
-Finally, the output of the model **f(x)** is an array of size *1X128* that we will employ later as an embedding feature vectors to authenticate subjects.
+In order to train TypeNet with sequences of different lengths *N* within a single batch, we truncate the end of the input sequence when *N>M* and zero pad at the end when *N<M*, in both cases to the fixed size *M*. The embedding vector provided are obtained for keystroke sequence of size *M*=50 keys.
+Finally, the output of the model **f(x)** is an array of size 1X128 that represents the embedding feature vectors that we will employ to authenticate subjects.
 
 ![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig6.png)
 **Figure 2. The proposed architecture to train a GAN Generator of synthetic mouse trajectories.The Generator learns the human features of the mouse trajectories and generate human-like ones from Gaussian Noise.**
