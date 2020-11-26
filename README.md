@@ -24,8 +24,10 @@ TypeNet Series Benchmark for development of authentication keystroke technologye
 ## DESCRIPTION OF TypeNet benchmark
 This benchmark contains the embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. These embedding vectors are calculated with TypeNet, a recurrent deep neuronal network aimed to recognize individuals at large scale based on their typing behaviours. Aditionally, we provide a experimental protocol to reproduce the authentication results obtained with TypeNet in Acien *et al.* [1] paper.
 
+
 **Keystroke Datasets**  
 The embedding vectors are obtained when passing through TypeNet networks the keystroke sequences acquired from the two Aalto University Datasets: 1) Dhakal *et al.* [2] dataset, which comprises more than 5GB of keystroke data collected in desktop keyboards from 168K participants; and 2) Palin  *et al.* [3] dataset, which comprises almost 4GB of keystroke data collected in mobile devices from 260K participants. The data were collected following the same procedure for both datasets. The acquisition task required subjects to memorize English sentences and then type them as quickly and accurate as they could. The English sentences were selected randomly from a set of 1525 examples taken from the Enron mobile email and Gigaword Newswire corpus. The example sentences contained a minimum of 3 words and a maximum of 70 characters. Note that the sentences typed by the participants could contain more than 70 characters because each participant could forget or add new characters when typing. All participants in the Dhakal database completed 15 sessions (i.e. one sentence for each session) on either a desktop or a laptop physical keyboard. However, in the Palin dataset the participants who finished at least 15 sessions are only 23% (60K participants) over 260 participants that started the typing test.
+
 
 **TypeNet Architecture**  
 The TypeNet architecture is depicted in Fig. 1. It is composed of two Long Short-Term Memory (LSTM) layers of 128 units (*tanh* activation function). Between the LSTM layers, we perform batch normalization and dropout at a rate of 0.5 to avoid overfitting. Additionally, each LSTM layer has a recurrent dropout rate of 0.2. 
@@ -43,7 +45,18 @@ As depicted in Fig .2, TypeNet is trained with three loss functions (softmax, co
 
 The remaining 100K subjects were employed only to test the desktop models, so there is no data overlap between the two groups of subjects (open-set authentication paradigm). The same protocol was employed for the mobile scenario but adjusting the amount of subjects employed to train and test. In order to have balanced subsets close to the desktop scenario, we divided by half the Palin database. It means that 30K subjects were employed to train the models, generating 15 X 29,999 X 15 = 6.75 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject, meanwhile the other 30K subjects were employed to test the mobile TypeNet models. Once again 10K subjects were employed to train the models based on the Softmax function.
 
-The embedding feature vectors provided in this repository come from these 100K test subjects from desktop scenario and the 30K test subjects for mobile.
+The embedding feature vectors provided in this repository come from these 100K test subjects for the desktop scenario and the 30K test subjects for the mobile scenario.
+
+
+**Experimental Protocol**
+We authenticate subjects by comparing gallery samples **x<sub>i,g</sub>** belonging to the subject *i* in the test set to a query sample  **x<sub>j,q</sub>** from either the same subject (genuine match *i = j*) or another subject (impostor match *i ≠ j*). The test score is computed by averaging the Euclidean distances between each gallery embedding vector **f(x<sub>i,g</sub>)** and the query embedding vector **f(x<sub>i,q</sub>)**  as follows:
+\begin{equation}
+\label{score}
+     \textit{s}_{i,j}^q= \frac{1}{G}\sum_{g=1}^{G} ||\textbf{f}(\textbf{x}_{i,g})-\textbf{f}(\textbf{x}_{j,q})||
+\end{equation}
+where $G$ is the number of sequences in the gallery (i.e. the number of enrollment samples) and $q$ is the query sample of subject $j$. Taking into account that each subject has a total of $15$ sequences, we retain $5$ sequences per subject as test set (i.e. each subject has $5$ genuine test scores) and let $G$ vary between $1 \leq G \leq 10$ in order to evaluate the performance as a function of the number of enrollment sequences.
+
+To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define $k$ as the number of enrolled subjects. In our experiments, we vary $k$ in the range $100 \leq k \leq K$, where $K = 100$,$000$ for the desktop TypeNet models and $K = 30$,$000$ for the mobile ones. Therefore each subject has $5$ genuine scores and $k-1$ impostor scores. Note that we have more impostor scores than genuine ones, a common scenario in keystroke dynamics authentication. The results reported in the next section are computed in terms of Equal Error Rate (EER), which is the value where False Acceptance Rate (FAR, proportion of impostors classified as genuine) and False Rejection Rate (FRR, proportion of genuine subjects classified as impostors) are equal. The error rates are calculated for each subject and then averaged over all $k$ subjects \cite{2014_IWSB_Aythami_Keystroking}.
 
 #### FILES FORMAT
 + .txt files: it just contains two columns with the **{x̂, ŷ}** mouse coordinates.
