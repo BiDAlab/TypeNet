@@ -33,7 +33,7 @@ The TypeNet architecture is depicted in Fig. 1. It is composed of two Long Short
 In order to train TypeNet with sequences of different lengths *N* within a single batch, we truncate the end of the input sequence when *N>M* and zero pad at the end when *N<M*, in both cases to the fixed size *M*. The embedding vector provided are obtained for keystroke sequence of size *M*=50 keys.
 Finally, the output of the model **f(x)** is an array of size 1X128 that represents the embedding feature vectors that we will employ to authenticate subjects.
 
-![](https://github.com/BiDAlab/TypeNet/blob/master/TypeNet_architecture.png)
+![](https://github.com/BiDAlab/TypeNet/blob/main/TypeNet_architecture.png)
 **Figure 1. Architecture of TypeNet for free-text keystroke sequences. The input x is a keystroke sequence of size *M*=50 keys and the output f(x) is an embedding vector with shape 1X128.**
 
 The aim of the Generator is to fool the Discriminator by generating synthetic mouse trajectories very similar to the real ones, while the Discriminator has to predict whether the sample comes from the real set or is a fake created by the Generator. Once the Generator is trained this way, then we can use it to synthesize mouse trajectories very similar to the human ones.
