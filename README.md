@@ -47,9 +47,9 @@ The remaining 100K subjects were employed only to test the desktop models, so th
 
 The embedding feature vectors provided in this repository come from these 100K test subjects for the desktop scenario and the 30K test subjects for the mobile scenario.
 
-**Experimental Protocol**
+**Experimental Protocol** 
 We authenticate subjects by comparing gallery samples **x<sub>i,g</sub>** belonging to the subject *i* in the test set to a query sample  **x<sub>j,q</sub>** from either the same subject (genuine match *i = j*) or another subject (impostor match *i ≠ j*). The test score is computed by averaging the Euclidean distances between each gallery embedding vector **f(x<sub>i,g</sub>)** and the query embedding vector **f(x<sub>i,q</sub>)**  as follows:
-
+<img src="https://github.com/BiDAlab/TypeNet/blob/main/equation.png">
 where $G$ is the number of sequences in the gallery (i.e. the number of enrollment samples) and $q$ is the query sample of subject $j$. Taking into account that each subject has a total of $15$ sequences, we retain $5$ sequences per subject as test set (i.e. each subject has $5$ genuine test scores) and let $G$ vary between $1 \leq G \leq 10$ in order to evaluate the performance as a function of the number of enrollment sequences.
 
 To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define $k$ as the number of enrolled subjects. In our experiments, we vary $k$ in the range $100 \leq k \leq K$, where $K = 100$,$000$ for the desktop TypeNet models and $K = 30$,$000$ for the mobile ones. Therefore each subject has $5$ genuine scores and $k-1$ impostor scores. Note that we have more impostor scores than genuine ones, a common scenario in keystroke dynamics authentication. The results reported in the next section are computed in terms of Equal Error Rate (EER), which is the value where False Acceptance Rate (FAR, proportion of impostors classified as genuine) and False Rejection Rate (FRR, proportion of genuine subjects classified as impostors) are equal. The error rates are calculated for each subject and then averaged over all $k$ subjects \cite{2014_IWSB_Aythami_Keystroking}.
