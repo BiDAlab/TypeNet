@@ -56,7 +56,7 @@ where *G* is the number of sequences in the gallery (i.e. the number of enrollme
 To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define *k* as the number of enrolled subjects. In our experiments, we vary *k* in the range 100 ≤ *k* ≤ *K*, where *K* = 100,000 for the desktop TypeNet models and *K* = 30,000 for the mobile ones. Therefore each subject has 5 genuine scores and *k*-1 impostor scores.
 
 #### FILES FORMAT
-+ .npy files: the matrix that contains the embedding vectors of dimensions (Subject, Session, Embedding vector).
++ .npy files: a matrix that contains the embedding vectors of dimensions (Subject, Session, Embedding vector).
 
   + Subject index: from 0 to 100000 for desktop and from 0 to 30000 for mobile.
 
@@ -146,10 +146,10 @@ for iG in GALLERY_VALUES:
 #### REFERENCES
 For further information on the benchmark and on different applications where it has been used, we refer the reader to (all these articles are publicly available in the [publications](http://atvs.ii.uam.es/atvs/listpublications.do) section of the BiDA group webpage).
 
-+ [1] A. Acien, A. Morales, J. Fierrez, R. Vera-Rodriguez. BeCAPTCHA-Mouse: Synthetic Mouse Trajectories and Improved Bot Detection. *arXiv:2005.00890*, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
++ [1] A. Acien, A. Morales, J. V. Monaco, R. Vera-Rodriguez, and J. Fierrez. TypeNet: Deep Learning Keystroke Biometrics. *arXiv:2005.00890*, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
 
-+ [2] C. Shen, Z. Cai, X. Guan, R. Maxion. Performance evaluation of anomalydetection algorithms for mouse dynamics, *Computers & Security*, 45: 156–171, 2014.
++ [2] V. Dhakal, A. M. Feit, P. O. Kristensson, and A. Oulasvirta. Observations on typing from 136 million keystrokes, in *Proc. of the ACM CHI Conference on Human Factors in Computing Systems*, 2018.
 
-+ [3] M. Djioua, R. Plamondon. A new algorithm and system for the characterization of handwriting strokes with delta-lognormal parameters, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 31(11): 2060–2072, 2009.
++ [3] K. Palin, A. Feit, S. Kim, P. O. Kristensson, and A.  Oulasvirta. “How do people type on mobile devices? observations from a study with 37,000 volunteers.”  in *Proc.  of  21st  ACM  International  Conferenceon  Human-Computer  Interaction  with  Mobile  Devices  and  Services (MobileHCI’19)*, 2019.
 
-Please remember to reference article [1] on any work made public, whatever the form, based directly or indirectly on any part of the BeCAPTCHA-Mouse benchmark.
+Please remember to reference article [1] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet benchmark.
