@@ -1,5 +1,5 @@
 # TypeNet Benchmark 
-TypeNet Benchmark for development of authentication keystroke technologyes based on deep neuronal networks.
+TypeNet Series Benchmark for development of authentication keystroke technologyes based on deep neuronal networks.
 
 ## INSTRUCTIONS FOR DOWNLOADING TypeNet Benchmark
 1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/BeCAPTCHA-Mouse_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
@@ -7,7 +7,7 @@ TypeNet Benchmark for development of authentication keystroke technologyes based
  
 2) Send an email to **atvs@uam.es**, as follows:
 
-   *Subject:* **[DATABASE benchmark: TypeNet_Benchmark]**
+   *Subject:* **[DATABASE benchmark: TypeNet Benchmark]**
 
    Body: Your name, e-mail, telephone number, organization, postal mail, purpose for which you will use the database, time and date at which you sent the email with the signed license agreement.
  
@@ -22,10 +22,10 @@ TypeNet Benchmark for development of authentication keystroke technologyes based
 
 
 ## DESCRIPTION OF TypeNet benchmark
-This benchmark contains the TypeNet embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. Aditionally, we provide a experimental protocol to reproduce the results obtained in Acien *et al.* [1] paper.
+This benchmark contains the embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. These embedding vectors are calculated with TypeNet, a recurrent deep neuronal network aimed to recognize individuals at large scale based on their typing behaviours. Aditionally, we provide a experimental protocol to reproduce the authentication results obtained with TypeNet in Acien *et al.* [1] paper.
 
 **Keystroke Datasets**  
-The embedding vectors are obtained when passing through TypeNet network the keystroke sequences acquired from the two Aalto University Datasets: 1) Dhakal *et al.* [2] dataset, which comprises more than 5GB of keystroke data collected in desktop keyboards from 168K participants; and 2) Palin  *et al.* [3] dataset, which comprises almost 4GB of keystroke data collected in mobile devices from 260K participants. The data were collected following the same procedure for both datasets. The acquisition task required subjects to memorize English sentences and then type them as quickly and accurate as they could. The English sentences were selected randomly from a set of 1525 examples taken from the Enron mobile email and Gigaword Newswire corpus. The example sentences contained a minimum of 3 words and a maximum of 70 characters. Note that the sentences typed by the participants could contain more than 70 characters because each participant could forget or add new characters when typing. All participants in the Dhakal database completed 15 sessions (i.e. one sentence for each session) on either a desktop or a laptop physical keyboard. However, in the Palin dataset the participants who finished at least 15 sessions are only 23% (60K participants) over 260 participants that started the typing test.
+The embedding vectors are obtained when passing through TypeNet networks the keystroke sequences acquired from the two Aalto University Datasets: 1) Dhakal *et al.* [2] dataset, which comprises more than 5GB of keystroke data collected in desktop keyboards from 168K participants; and 2) Palin  *et al.* [3] dataset, which comprises almost 4GB of keystroke data collected in mobile devices from 260K participants. The data were collected following the same procedure for both datasets. The acquisition task required subjects to memorize English sentences and then type them as quickly and accurate as they could. The English sentences were selected randomly from a set of 1525 examples taken from the Enron mobile email and Gigaword Newswire corpus. The example sentences contained a minimum of 3 words and a maximum of 70 characters. Note that the sentences typed by the participants could contain more than 70 characters because each participant could forget or add new characters when typing. All participants in the Dhakal database completed 15 sessions (i.e. one sentence for each session) on either a desktop or a laptop physical keyboard. However, in the Palin dataset the participants who finished at least 15 sessions are only 23% (60K participants) over 260 participants that started the typing test.
 
 **TypeNet Architecture**  
 The TypeNet architecture is depicted in Fig. 1. It is composed of two Long Short-Term Memory (LSTM) layers of 128 units (*tanh* activation function). Between the LSTM layers, we perform batch normalization and dropout at a rate of 0.5 to avoid overfitting. Additionally, each LSTM layer has a recurrent dropout rate of 0.2. 
@@ -39,15 +39,11 @@ Finally, the output of the model **f(x)** is an array of size 1X128 that represe
 As depicted in Fig .2, TypeNet is trained with three loss functions (softmax, contrastive and triplet loss), and therefore, three different TypeNet versions (i.e. one for each loss function) are employed to calculated the embedding vectors for both scenarios: desktop scenario and mobile scenario, with the models trained with Dhakal and Palin databases, respectively. For the desktop scenario, we train the models using only the first 68K subjects from the Dhakal dataset. For the Softmax function we train a model with *C* = 10K subjects (we could not train with more subjects due to hardware limitations) which means 15 X 10K = 150K training keystroke sequences (the remaining 58K subjects were discarded). For the Contrastive loss we generate genuine and impostor pairs using all the 15 keystroke sequences available for each subject. This provides us with 15 X 67,999 X 15 = 15.3 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject. The pairs were chosen randomly in each training batch ensuring that the number of genuine and impostor pairs remains balanced (512 pairs in total in each batch including impostor and genuine pairs). Similarly, we randomly chose triplets for the Triplet loss training.
 
 ![](https://github.com/BiDAlab/TypeNet/blob/main/training3.png)
-**Figure 2. Learning architecture for the different loss functions a) Softmax loss, b) Contrastive loss, and c) Triplet loss. The goal is to find the most discriminant embedding space f(x).**
+**Figure 2. Learning architecture of TypeNet for the different loss functions a) Softmax loss, b) Contrastive loss, and c) Triplet loss. The goal is to find the most discriminant embedding space f(x).**
 
-The remaining 100K subjects were employed only to test the desktop models, so there is no data overlap between the two groups of subjects (open-set authentication paradigm). The same protocol was employed for the mobile scenario but adjusting the amount of subjects employed to train and test. In order to have balanced subsets close to the desktop scenario, we divided by half the Palin database. It means that 30K subjects were employed to train the models, generating 15 X 29,999 X 15=6.75 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject, meanwhile the other 30K subjects were employed to test the mobile TypeNet models. Once again $10$,$000$ subjects were employed to train the models based on the Softmax function. 
+The remaining 100K subjects were employed only to test the desktop models, so there is no data overlap between the two groups of subjects (open-set authentication paradigm). The same protocol was employed for the mobile scenario but adjusting the amount of subjects employed to train and test. In order to have balanced subsets close to the desktop scenario, we divided by half the Palin database. It means that 30K subjects were employed to train the models, generating 15 X 29,999 X 15 = 6.75 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject, meanwhile the other 30K subjects were employed to test the mobile TypeNet models. Once again 10K subjects were employed to train the models based on the Softmax function.
 
-Regarding the hyper-parameters employed during training, the best results for both models were achieved with a learning rate of $0.05$, Adam optimizer with $\beta_{1} = 0.9$, $\beta_{2} = 0.999$ and $\epsilon = 10^{-8}$, and the margin set to $\alpha = 1.5$. The models were trained for $200$ epochs with 150 batches per epoch and $512$ sequences in each batch. The models were built in \texttt{Keras-Tensorflow}.
-
-
-#### BENCHMARK STRUCTURE
-BeCAPTCHA-Mouse benchmark are composed by two main folders: *'DB_GAN'* which contains the synthetic GAN trayectories and *'DB_fnc'* that contains the function-based ones. Each main folder has other two folders: *'raw'* folder which contains the raw data of the synthetic mouse trayectories in .txt files, and *'neuromotor'* folder that contains the Sigma-Lognormal descomposition (more details in [3]) of the raw files in .ana format. Both kind of files have the same name to match them easily.
+The embedding feature vectors provided in this repository come from these 100K test subjects from desktop scenario and the 30K test subjects for mobile.
 
 #### FILES FORMAT
 + .txt files: it just contains two columns with the **{x̂, ŷ}** mouse coordinates.
