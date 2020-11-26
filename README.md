@@ -150,6 +150,6 @@ For further information on the benchmark and on different applications where it 
 
 + [2] V. Dhakal, A. M. Feit, P. O. Kristensson, and A. Oulasvirta. Observations on typing from 136 million keystrokes, in *Proc. of the ACM CHI Conference on Human Factors in Computing Systems*, 2018.
 
-+ [3] K. Palin, A. Feit, S. Kim, P. O. Kristensson, and A.  Oulasvirta. “How do people type on mobile devices? observations from a study with 37,000 volunteers.”  in *Proc.  of  21st  ACM  International  Conferenceon  Human-Computer  Interaction  with  Mobile  Devices  and  Services (MobileHCI’19)*, 2019.
++ [3] K. Palin, A. M. Feit, S. Kim, P. O. Kristensson, and A.  Oulasvirta. “How do people type on mobile devices? observations from a study with 37,000 volunteers.”  in *Proc.  of  21st  ACM  International  Conferenceon  Human-Computer  Interaction  with  Mobile  Devices  and  Services (MobileHCI’19)*, 2019.
 
 Please remember to reference article [1] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet benchmark.
