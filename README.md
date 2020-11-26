@@ -1,13 +1,13 @@
-# BeCAPTCHA-Mouse Benchmark 
-BeCAPTCHA-Mouse Benchmark for development of bot detection technologyes based on mouse dynamics.
+# TypeNet Benchmark 
+TypeNet Benchmark for development of authentication keystroke technologyes based on deep neuronal networks.
 
-## INSTRUCTIONS FOR DOWNLOADING BeCAPTCHA-Mouse Benchmark
+## INSTRUCTIONS FOR DOWNLOADING TypeNet Benchmark
 1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/BeCAPTCHA-Mouse_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
  
  
 2) Send an email to **atvs@uam.es**, as follows:
 
-   *Subject:* **[DATABASE benchmark: BeCAPTCHA_Mouse_Benchmark]**
+   *Subject:* **[DATABASE benchmark: TypeNet_Benchmark]**
 
    Body: Your name, e-mail, telephone number, organization, postal mail, purpose for which you will use the database, time and date at which you sent the email with the signed license agreement.
  
@@ -21,8 +21,8 @@ BeCAPTCHA-Mouse Benchmark for development of bot detection technologyes based on
 5) For more information, please contact: **atvs@uam.es**
 
 
-## DESCRIPTION OF BeCAPTCHA-Mouse BENCHMARK
-BeCAPTCHA-Mouse benchmark contains 9K synthetic mouse trayectories generated with two methods: 
+## DESCRIPTION OF TypeNet BENCHMARK
+TypeNet benchmark contains the embedding vectors from 130K subjects during natural typing in both touchscreen virtual and physical keyboards scenarios. Aditionally, we provide a experimental protocol to reproduce the results obtained in Acien *et al.*. [1] work.
 
 **Method 1: Function-based Mouse Trajectory Synthesis**  
 With this approach the mouse trajectories are generated according to three different trajectory shapes (linear, quadratic, and exponential) and three different velocity profiles (constant, logarithmic, and Gaussian). 
