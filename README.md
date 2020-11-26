@@ -38,7 +38,7 @@ Finally, the output of the model **f(x)** is an array of size 1X128 that represe
 ![](https://github.com/BiDAlab/TypeNet/blob/main/TypeNet_architecture.png)
 **Figure 1. Architecture of TypeNet for free-text keystroke sequences. The input x is a keystroke sequence of size *M*=50 keys and the output f(x) is an embedding vector with shape 1X128.**
 
-As depicted in Fig .2, TypeNet is trained with three loss functions (softmax, contrastive and triplet loss), and therefore, three different TypeNet versions (i.e. one for each loss function) are employed to calculated the embedding vectors for both scenarios: desktop scenario and mobile scenario, with the models trained with Dhakal and Palin databases, respectively. For the desktop scenario, we train the models using only the first 68K subjects from the Dhakal dataset. For the Softmax function we train a model with *C* = 10K subjects (we could not train with more subjects due to hardware limitations) which means 15 X 10K = 150K training keystroke sequences (the remaining 58K subjects were discarded). For the Contrastive loss we generate genuine and impostor pairs using all the 15 keystroke sequences available for each subject. This provides us with 15 X 67,999 X 15 = 15.3 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject. The pairs were chosen randomly in each training batch ensuring that the number of genuine and impostor pairs remains balanced (512 pairs in total in each batch including impostor and genuine pairs). Similarly, we randomly chose triplets for the Triplet loss training.
+As depicted in Fig .2, TypeNet is trained with three loss functions (softmax, contrastive and triplet loss), and therefore, trhee different TypeNet versions (i.e. one for each loss function) are employed to calculated the embedding vectors for both scenarios: desktop scenario and mobile scenario, with the models trained with Dhakal and Palin databases, respectively. For the desktop scenario, we train the models using only the first 68K subjects from the Dhakal dataset. For the Softmax function we train a model with *C* = 10K subjects (we could not train with more subjects due to hardware limitations) which means 15 X 10K = 150K training keystroke sequences (the remaining 58K subjects were discarded). For the Contrastive loss we generate genuine and impostor pairs using all the 15 keystroke sequences available for each subject. This provides us with 15 X 67,999 X 15 = 15.3 millions of impostor pair combinations and 15 X 14/2 = 105 genuine pair combinations for each subject. The pairs were chosen randomly in each training batch ensuring that the number of genuine and impostor pairs remains balanced (512 pairs in total in each batch including impostor and genuine pairs). Similarly, we randomly chose triplets for the Triplet loss training.
 
 ![](https://github.com/BiDAlab/TypeNet/blob/main/training3.png)
 **Figure 2. Learning architecture of TypeNet for the different loss functions a) Softmax loss, b) Contrastive loss, and c) Triplet loss. The goal is to find the most discriminant embedding space f(x).**
@@ -85,20 +85,61 @@ The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SC
   
   
 #### EXAMPLE USAGE
-
+We probide an example of the experimental protocol bellow:
 ```python
 
-from keras_vggface.vggface import VGGFace
+import keras
+from keras.models import Model, Sequential
+import numpy as np
+from sklearn.metrics.pairwise import euclidean_distances
 
-# Based on VGG16 architecture -> old paper(2015)
-vggface = VGGFace(model='vgg16') # or VGGFace() as default
+#Function to calculate the Equal Error Rate
+def eer_compute(scores_g, scores_i): 
 
-# Based on RESNET50 architecture -> new paper(2017)
-vggface = VGGFace(model='resnet50')
+    far = []
+    frr = []
+    ini=min(np.concatenate((scores_g, scores_i)))
+    fin=max(np.concatenate((scores_g, scores_i)))
+    
+    paso=(fin-ini)/10000
+    threshold = ini-paso
+    while threshold < fin+paso:
+        far.append(len(np.where(scores_i >= threshold)[0])/len(scores_i))
+        frr.append(len(np.where(scores_g < threshold)[0])/len(scores_g))
+        threshold = threshold + paso
+    
+    diferencia = abs(np.asarray(far) - np.asarray(frr))
+    j = np.where(diferencia==min(diferencia))[0]
+    index = j[0]
+    return ((far[index]+frr[index])/2)*100, frr,far
 
-# Based on SENET50 architecture -> new paper(2017)
-vggface = VGGFace(model='senet50')
+# Load the embedding vectors
+Matrix_embbeding= np.load('Embedding_vectors_Contrastive_Desktop.npy')
+NUM_TEST_USERS = 100000 #Number of tests users (100000 in dekstop)
+NUM_SESSIONS= 15 #Number of sessions per users (15)
+Matrix_embbeding= np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
+#The experimental protocol for authentication for different values of G
+GALLERY_VALUES=[1,2,5,7,10] #Values of G
+
+for iG in GALLERY_VALUES:              
+    NUM_SAMPLES_GALLERY= iG #Number of gallery samples employed (G)          
+    Mean_acc_per_user= []
+    
+    for genuine_user in range(NUM_TEST_USERS):
+                Gallery_matrix = Matrix_embbeding[genuine_user, :NUM_SAMPLES_GALLERY,:] # Gallery matrix
+                genuine_matrix = Matrix_embbeding[genuine_user, 10:,:]# Query Genuine matrix: the last 5 sessions of the genuine user
+                Y_pos_vec = np.mean(euclidean_distances(Gallery_matrix, genuine_matrix), axis = 0) #Genuine scores
+                Impostors_users= np.arange(NUM_TEST_USERS)
+                Impostors_users= np.delete(Impostors_users, genuine_user)
+                Unknown_matrix = Matrix_embbeding[Impostors_users, 11,:]# Query Unknown matrix: one session for each impostor user
+                Y_neg_vec = np.mean(euclidean_distances(Gallery_matrix, Unknown_matrix), axis = 0) #Impostor scores                                                                               ACC,_,_ = eer_compute(Y_pos_vec, Y_neg_vec)
+                Mean_acc_per_user.append(ACC)
+    
+            
+    Mean_eer_per_user =100-np.mean(Mean_acc_per_user)
+    print(iG)
+    print(Mean_eer_per_user)
 ```
 
 
