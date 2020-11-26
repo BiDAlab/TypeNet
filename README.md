@@ -50,9 +50,10 @@ The embedding feature vectors provided in this repository come from these 100K t
 **Experimental Protocol**  
 We authenticate subjects by comparing gallery samples **x<sub>i,g</sub>** belonging to the subject *i* in the test set to a query sample  **x<sub>j,q</sub>** from either the same subject (genuine match *i = j*) or another subject (impostor match *i ≠ j*). The test score is computed by averaging the Euclidean distances between each gallery embedding vector **f(x<sub>i,g</sub>)** and the query embedding vector **f(x<sub>i,q</sub>)**  as follows:
 <img src="https://github.com/BiDAlab/TypeNet/blob/main/equation.png">
+
 where *G* is the number of sequences in the gallery (i.e. the number of enrollment samples) and *q* is the query sample of subject *j*. Taking into account that each subject has a total of 15 sequences, we retain 5 sequences per subject as test set (i.e. each subject has 5 genuine test scores) and let *G* vary between 1 ≤ *G* ≤ 10 in order to evaluate the performance as a function of the number of enrollment sequences.
 
-To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define $k$ as the number of enrolled subjects. In our experiments, we vary $k$ in the range 100 ≤ *k* ≤ *K*, where *K* = 100,000 for the desktop TypeNet models and *K* = 30,000 for the mobile ones. Therefore each subject has 5 genuine scores and *k*-1 impostor scores.
+To generate impostor scores, for each enrolled subject we choose one test sample from each remaining subject. We define *k* as the number of enrolled subjects. In our experiments, we vary *k* in the range 100 ≤ *k* ≤ *K*, where *K* = 100,000 for the desktop TypeNet models and *K* = 30,000 for the mobile ones. Therefore each subject has 5 genuine scores and *k*-1 impostor scores.
 
 #### FILES FORMAT
 + .txt files: it just contains two columns with the **{x̂, ŷ}** mouse coordinates.
