@@ -85,7 +85,7 @@ The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SC
   
   
 #### EXAMPLE USAGE
-We probide an example of the experimental protocol bellow:
+We provide an example of the experimental protocol bellow:
 ```python
 
 import keras
@@ -119,7 +119,7 @@ NUM_TEST_USERS = 100000 #Number of tests users (100000 in dekstop)
 NUM_SESSIONS= 15 #Number of sessions per users (15)
 Matrix_embbeding= np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
-#The experimental protocol for authentication for different values of G
+#The experimental protocol for authentication with different values of G
 GALLERY_VALUES=[1,2,5,7,10] #Values of G
 
 for iG in GALLERY_VALUES:              
