@@ -115,15 +115,15 @@ def eer_compute(scores_g, scores_i):
 
 # Load the embedding vectors
 Matrix_embbeding = np.load('Embedding_vectors_Contrastive_Desktop.npy')
-NUM_TEST_USERS = 100000 #Number of tests users (100000 in dekstop)
+NUM_TEST_USERS = 100000 #Number of tests users 'k' (100000 in dekstop)
 NUM_SESSIONS = 15 #Number of sessions per users (15)
 Matrix_embbeding = np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
-#The experimental protocol for authentication with different values of G
-GALLERY_VALUES = [1,2,5,7,10] #Values of G
+#The experimental protocol for authentication with different values of 'G'
+GALLERY_VALUES = [1,2,5,7,10] #Values of 'G'
 
 for iG in GALLERY_VALUES:              
-    NUM_SAMPLES_GALLERY = iG #Number of gallery samples employed (G)          
+    NUM_SAMPLES_GALLERY = iG #Number of gallery samples employed ('G')          
     Mean_acc_per_user = []
     
     for genuine_user in range(NUM_TEST_USERS):
