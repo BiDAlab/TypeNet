@@ -115,7 +115,7 @@ def eer_compute(scores_g, scores_i):
 
 # Load the embedding vectors
 Matrix_embbeding = np.load('Embedding_vectors_Contrastive_Desktop.npy')
-NUM_TEST_USERS = 100000 #Number of tests users 'k' (100000 in dekstop)
+NUM_TEST_USERS = 1000 #Number of test users 'k' (K= 100000 in dekstop and K= 30000 in mobile)
 NUM_SESSIONS = 15 #Number of sessions per users (15)
 Matrix_embbeding = np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
