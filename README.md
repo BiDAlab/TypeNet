@@ -58,7 +58,7 @@ To generate impostor scores, for each enrolled subject we choose one test sample
 #### FILES FORMAT
 + .npy files: a matrix that contains the embedding vectors of dimensions (Subject, Session, Embedding vector).
 
-  + Subject index: from 0 to 100000 for desktop and from 0 to 30000 for mobile.
+  + Subject index: from 0 to 100,000 for desktop and from 0 to 30,000 for mobile.
 
   + Session index : from 0 to 15.
   
