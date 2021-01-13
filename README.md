@@ -2,7 +2,7 @@
 TypeNet Benchmark for development of authentication keystroke technologies based on deep neuronal networks.
 
 ## INSTRUCTIONS FOR DOWNLOADING TypeNet Benchmark
-1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/BeCAPTCHA-Mouse_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
+1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/TypeNet_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
  
  
 2) Send an email to **atvs@uam.es**, as follows:
