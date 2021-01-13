@@ -148,7 +148,7 @@ for iG in GALLERY_VALUES:
 #### REFERENCES
 For further information on the benchmark and on different applications where it has been used, we refer the reader to (all these articles are publicly available in the [publications](http://atvs.ii.uam.es/atvs/listpublications.do) section of the BiDA group webpage).
 
-+ [1] A. Acien, J.V. Monaco, A. Morales, R. Vera-Rodriguez, J. Fierrez, “TypeNet: Scaling up Keystroke Biometrics,” *Proc. of IAPR/IEEE International Joint Conference on Biometrics (IJCB)*, Houston, USA, 2020. . [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
++ [1] A. Acien, J.V. Monaco, A. Morales, R. Vera-Rodriguez, J. Fierrez, “TypeNet: Scaling up Keystroke Biometrics,” *Proc. of IAPR/IEEE International Joint Conference on Biometrics (IJCB)*, Houston, USA, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
 
 + [2] V. Dhakal, A. M. Feit, P. O. Kristensson, and A. Oulasvirta. Observations on typing from 136 million keystrokes, in *Proc. of the ACM CHI Conference on Human Factors in Computing Systems*, 2018.
 
