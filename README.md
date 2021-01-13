@@ -114,24 +114,24 @@ def eer_compute(scores_g, scores_i):
     return ((far[index]+frr[index])/2)*100, frr,far
 
 # Load the embedding vectors
-Matrix_embbeding= np.load('Embedding_vectors_Contrastive_Desktop.npy')
+Matrix_embbeding = np.load('Embedding_vectors_Contrastive_Desktop.npy')
 NUM_TEST_USERS = 100000 #Number of tests users (100000 in dekstop)
-NUM_SESSIONS= 15 #Number of sessions per users (15)
-Matrix_embbeding= np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
+NUM_SESSIONS = 15 #Number of sessions per users (15)
+Matrix_embbeding = np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
 #The experimental protocol for authentication with different values of G
-GALLERY_VALUES=[1,2,5,7,10] #Values of G
+GALLERY_VALUES = [1,2,5,7,10] #Values of G
 
 for iG in GALLERY_VALUES:              
-    NUM_SAMPLES_GALLERY= iG #Number of gallery samples employed (G)          
-    Mean_acc_per_user= []
+    NUM_SAMPLES_GALLERY = iG #Number of gallery samples employed (G)          
+    Mean_acc_per_user = []
     
     for genuine_user in range(NUM_TEST_USERS):
                 Gallery_matrix = Matrix_embbeding[genuine_user, :NUM_SAMPLES_GALLERY,:] # Gallery matrix
                 genuine_matrix = Matrix_embbeding[genuine_user, 10:,:]# Query Genuine matrix: the last 5 sessions of the genuine user
                 Y_pos_vec = np.mean(euclidean_distances(Gallery_matrix, genuine_matrix), axis = 0) #Genuine scores
-                Impostors_users= np.arange(NUM_TEST_USERS)
-                Impostors_users= np.delete(Impostors_users, genuine_user)
+                Impostors_users = np.arange(NUM_TEST_USERS)
+                Impostors_users = np.delete(Impostors_users, genuine_user)
                 Unknown_matrix = Matrix_embbeding[Impostors_users, 11,:]# Query Unknown matrix: one session for each impostor user
                 Y_neg_vec = np.mean(euclidean_distances(Gallery_matrix, Unknown_matrix), axis = 0) #Impostor scores   
                 
@@ -139,7 +139,7 @@ for iG in GALLERY_VALUES:
                 Mean_acc_per_user.append(ACC)
     
             
-    Mean_eer_per_user =100-np.mean(Mean_acc_per_user)
+    Mean_eer_per_user = 100-np.mean(Mean_acc_per_user)
     print(iG)
     print(Mean_eer_per_user)
 ```
