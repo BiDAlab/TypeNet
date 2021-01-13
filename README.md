@@ -21,7 +21,7 @@ TypeNet Benchmark for development of authentication keystroke technologies based
 5) For more information, please contact: **atvs@uam.es**
 
 
-## DESCRIPTION OF TypeNet benchmark
+## DESCRIPTION OF TypeNet Benchmark
 This benchmark contains the embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. These embedding vectors are calculated with TypeNet, a recurrent deep neuronal network aimed to recognize individuals at large scale based on their typing behaviours. Aditionally, we provide a experimental protocol to reproduce the authentication results obtained with TypeNet in Acien *et al.* [1] paper.
 
 
@@ -154,4 +154,4 @@ For further information on the benchmark and on different applications where it 
 
 + [3] K. Palin, A. M. Feit, S. Kim, P. O. Kristensson, and A.  Oulasvirta. “How do people type on mobile devices? observations from a study with 37,000 volunteers.”  in *Proc.  of  21st  ACM  International  Conferenceon  Human-Computer  Interaction  with  Mobile  Devices  and  Services (MobileHCI’19)*, 2019.
 
-Please remember to reference article [1,2,3] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet benchmark.
+Please remember to reference article [1,2,3] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet Benchmark.
