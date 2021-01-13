@@ -22,7 +22,7 @@ TypeNet Benchmark for development of authentication keystroke technologies based
 
 
 ## DESCRIPTION OF TypeNet Benchmark
-This benchmark contains the embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. These embedding vectors are calculated with TypeNet, a recurrent deep neuronal network aimed to recognize individuals at large scale based on their typing behaviours. Aditionally, we provide a experimental protocol to reproduce the authentication results obtained with TypeNet in Acien *et al.* [1] paper.
+This benchmark contains the embedding vectors from 130K subjects generated during free-text typing in both touchscreen virtual (30K subjects) and physical keyboards (100K subjects) scenarios. These embedding vectors are calculated with TypeNet, a recurrent neuronal network aimed to recognize individuals at large scale based on their typing behaviours. Aditionally, we provide an experimental protocol to reproduce the authentication results obtained with TypeNet in Acien *et al.* [1] paper.
 
 
 **Keystroke Datasets**  
