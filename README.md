@@ -135,7 +135,7 @@ for iG in GALLERY_VALUES:
                 Unknown_matrix = Matrix_embbeding[Impostors_users, 11,:]# Query Unknown matrix: one session for each impostor user
                 Y_neg_vec = np.mean(euclidean_distances(Gallery_matrix, Unknown_matrix), axis = 0) #Impostor scores   
                 
-                ACC,frr,far = eer_compute(Y_pos_vec, Y_neg_vec)
+                ACC,_,_ = eer_compute(Y_pos_vec, Y_neg_vec)
                 Mean_acc_per_user.append(ACC)
     
             
