@@ -1,7 +1,8 @@
 # TypeNet Benchmark 
 TypeNet Benchmark for development of authentication keystroke technologies based on deep neuronal networks.
 
-## INSTRUCTIONS FOR DOWNLOADING TypeNet Benchmark
+## INSTRUCTIONS FOR DOWNLOADING TypeNet Benchmark (Available soon)
+
 1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/TypeNet_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
  
  
@@ -21,7 +22,6 @@ TypeNet Benchmark for development of authentication keystroke technologies based
 5) For more information, please contact: **atvs@uam.es**
 
 
-## <div align="center"> Available soon </div>
 
 
 ## DESCRIPTION OF TypeNet Benchmark
