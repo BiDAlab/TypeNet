@@ -21,7 +21,7 @@ TypeNet Benchmark for development of authentication keystroke technologies based
 5) For more information, please contact: **atvs@uam.es**
 
 
-##Available soon
+## <center>Available soon
 
 
 ## DESCRIPTION OF TypeNet Benchmark
