@@ -94,7 +94,7 @@ We provide an example of the experimental protocol bellow:
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 
-#Function to calculate the Equal Error Rate
+#Function to calculate the accuracy as the inverse of Equal Error Rate
 def eer_compute(scores_g, scores_i): 
 
     far = []
