@@ -71,16 +71,16 @@ To generate impostor scores, for each enrolled subject we choose one test sample
 #### FILES NOMENCLATURE
 The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SCENARIO.npy*
 
-+ LOSS: indicates the loss function employed to train the TypeNet model to calculate the embedding vectors.
++ LOSS: indicates the loss function employed to train the TypeNet model and calculate the embedding vectors.
 
-  + Softmax = softmax loss funtion.
+  + Softmax = softmax loss function (*categorical_crossentropy loss with softmax activation function*).
   
   + Contrastive = Contrastive loss function.
   
   + Triplet = triplet loss function.
   
 
-+ SCENARIO: indicates whether the embedding vectors are extracted from the desktop or mobile datasets.
++ SCENARIO: indicates whether the embedding vectors are extracted from the desktop or mobile dataset.
 
   + Mobile = mobile dataset.
   
@@ -91,8 +91,6 @@ The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SC
 We provide an example of the experimental protocol bellow:
 ```python
 
-import keras
-from keras.models import Model, Sequential
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 
@@ -111,16 +109,19 @@ def eer_compute(scores_g, scores_i):
         frr.append(len(np.where(scores_g < threshold)[0])/len(scores_g))
         threshold = threshold + paso
     
-    diferencia = abs(np.asarray(far) - np.asarray(frr))
-    j = np.where(diferencia==min(diferencia))[0]
+    gap = abs(np.asarray(far) - np.asarray(frr))
+    j = np.where(gap==min(gap))[0]
     index = j[0]
     return ((far[index]+frr[index])/2)*100, frr,far
 
+
+#################################
+##             Main            ## 
+################################# 
 # Load the embedding vectors
-Matrix_embbeding = np.load('Embedding_vectors_Contrastive_Desktop.npy')
+Matrix_embbeding = np.load('Embedding_vectors_Triplet_Desktop.npy')
 NUM_TEST_USERS = 1000 #Number of test users 'k' (K= 100000 in dekstop and K= 30000 in mobile)
 NUM_SESSIONS = 15 #Number of sessions per users (15)
-Matrix_embbeding = np.reshape(Matrix_embbeding, (NUM_TEST_USERS, NUM_SESSIONS, 128))
 
 #The experimental protocol for authentication with different values of 'G'
 GALLERY_VALUES = [1,2,5,7,10] #Values of 'G'
@@ -143,8 +144,8 @@ for iG in GALLERY_VALUES:
     
             
     Mean_eer_per_user = 100-np.mean(Mean_acc_per_user)
-    print(iG)
-    print(Mean_eer_per_user)
+    print('Number of genuine sessions employed as gallery: '+str(iG))
+    print('EER: '+ str(Mean_eer_per_user))
 ```
 
 
