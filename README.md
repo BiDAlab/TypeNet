@@ -75,7 +75,7 @@ The nomenclature followed to name the .npy files  is: *Embedding_vectors_LOSS_SC
 
   + Softmax = softmax loss function (*categorical_crossentropy loss with softmax activation function*).
   
-  + Contrastive = Contrastive loss function.
+  + Contrastive = contrastive loss function.
   
   + Triplet = triplet loss function.
   
@@ -120,8 +120,9 @@ def eer_compute(scores_g, scores_i):
 ################################# 
 # Load the embedding vectors
 Matrix_embbeding = np.load('Embedding_vectors_Triplet_Desktop.npy')
-NUM_TEST_USERS = 1000 #Number of test users 'k' (K= 100000 in dekstop and K= 30000 in mobile)
-NUM_SESSIONS = 15 #Number of sessions per users (15)
+
+#Number of test users 'k' (K= 100000 in dekstop and K= 30000 in mobile) 
+NUM_TEST_USERS = 1000 
 
 #The experimental protocol for authentication with different values of 'G'
 GALLERY_VALUES = [1,2,5,7,10] #Values of 'G'
@@ -143,9 +144,8 @@ for iG in GALLERY_VALUES:
                 Mean_acc_per_user.append(ACC)
     
             
-    Mean_eer_per_user = 100-np.mean(Mean_acc_per_user)
     print('Number of genuine sessions employed as gallery: '+str(iG))
-    print('EER: '+ str(Mean_eer_per_user))
+    print('EER: '+ str(100-np.mean(Mean_acc_per_user)))
 ```
 
 
