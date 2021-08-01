@@ -161,4 +161,4 @@ For further information on the benchmark and on different applications where it 
 
 + [4] A. Acien, J.V. Monaco, A. Morales, R. Vera-Rodriguez, J. Fierrez, “TypeNet: Scaling up Keystroke Biometrics,” *Proc. of IAPR/IEEE International Joint Conference on Biometrics (IJCB)*, Houston, USA, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
 
-Please remember to reference article [1,2,3] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet Benchmark.
+Please remember to reference article [1,4] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet Benchmark.
