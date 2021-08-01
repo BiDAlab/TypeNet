@@ -145,7 +145,7 @@ for iG in GALLERY_VALUES:
     
             
     print('Number of genuine sessions employed as gallery: '+str(iG))
-    print('EER: '+ str(100-np.mean(Mean_acc_per_user)))
+    print('Mean EER per user: '+ str(100-np.mean(Mean_acc_per_user)))
 ```
 
 
