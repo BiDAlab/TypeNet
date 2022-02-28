@@ -152,13 +152,13 @@ for iG in GALLERY_VALUES:
 #### REFERENCES
 For further information on the benchmark and on different applications where it has been used, we refer the reader to (all these articles are publicly available in the [publications](http://atvs.ii.uam.es/atvs/listpublications.do) section of the BiDA group webpage).
 
-+ [1] A. Acien, A. Morales, J.V. Monaco, R. Vera-Rodriguez, J. Fierrez, "TypeNet: Deep Learning Keystroke Biometrics," *arXiv:2101.05570*, 2021. [[pdf](https://arxiv.org/pdf/2101.05570.pdf)]
++ [1] A. Acien, A. Morales, J.V. Monaco, R. Vera-Rodriguez, J. Fierrez, "TypeNet: Deep Learning Keystroke Biometrics," in *IEEE Transactions on Biometrics, Behavior, and Identity Science (TBIOM)*, vol. 4, pp.57 - 70, 2022. [[pdf](https://arxiv.org/pdf/2101.05570.pdf)]
 
 
 + [2] V. Dhakal, A. M. Feit, P. O. Kristensson, and A. Oulasvirta. Observations on typing from 136 million keystrokes, in *Proc. of the ACM CHI Conference on Human Factors in Computing Systems*, 2018.
 
 + [3] K. Palin, A. M. Feit, S. Kim, P. O. Kristensson, and A.  Oulasvirta. “How do people type on mobile devices? observations from a study with 37,000 volunteers.”  in *Proc.  of  21st  ACM  International  Conferenceon  Human-Computer  Interaction  with  Mobile  Devices  and  Services (MobileHCI’19)*, 2019.
 
-+ [4] A. Acien, J.V. Monaco, A. Morales, R. Vera-Rodriguez, J. Fierrez, “TypeNet: Scaling up Keystroke Biometrics,” *Proc. of IAPR/IEEE International Joint Conference on Biometrics (IJCB)*, Houston, USA, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
++ [4] A. Acien, J.V. Monaco, A. Morales, R. Vera-Rodriguez, J. Fierrez, “TypeNet: Scaling up Keystroke Biometrics,” in *Proc. of IAPR/IEEE International Joint Conference on Biometrics (IJCB)*, Houston, USA, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
 
 Please remember to reference article [1,4] on any work made public, whatever the form, based directly or indirectly on any part of the TypeNet Benchmark.
